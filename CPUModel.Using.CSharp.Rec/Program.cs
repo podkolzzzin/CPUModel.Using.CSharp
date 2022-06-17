@@ -1,6 +1,6 @@
 ﻿int[] registers = new int[2];
-// int i = 0;
-// while (i < 10) 
+//
+// for (int i = 0; i < 10; i++) 
 // {
 //     Console.WriteLine("#StopRussianAgression");
 //     i++;
@@ -22,10 +22,15 @@ var condition = new ICommand[]
 var body = new ICommand[]
 {
     new OutputCommand("#StopRussianAgression")
-}.Concat(new IncrementCommand("i").Compile()).ToArray();
+};
 
-var commands = declarations.Concat(new WhileCommand(condition, body)
-    .Compile()).ToArray();
+var commands = new ForCommand(
+        preCondition: declarations,
+        condition: condition,
+        postCondition: new IncrementCommand("i").Compile().ToArray(),
+        body: body)
+    .Compile()
+    .ToArray();
 
 for (int i = 0; i < commands.Length;)
 {
@@ -43,6 +48,47 @@ for (int i = 0; i < commands.Length;)
 
 Console.ReadLine();
 
+class ForCommand
+{
+    private readonly ICommand[] _preCondition;
+    private readonly ICommand[] _condition;
+    private readonly ICommand[] _postCondition;
+    private readonly ICommand[] _body;
+
+    public ForCommand(
+        ICommand[] preCondition,
+        ICommand[] condition,
+        ICommand[] postCondition,
+        ICommand[] body)
+    {
+        _preCondition = preCondition;
+        _condition = condition;
+        _postCondition = postCondition;
+        _body = body;
+    }
+
+    public IEnumerable<ICommand> Compile()
+    {
+        var realBody = _body
+            .Concat(_postCondition)
+            .Concat(new ICommand[]
+            {
+                new PutConstantToRegisterCommand(0, int.MaxValue), // Stub
+                new JumpCommand()
+            })
+            .ToArray();
+        var ifCommandsCount = new IfCommand(_condition, realBody.ToArray(), Array.Empty<ICommand>()).Compile().Count() - 3;
+        realBody[^2] = new PutConstantToRegisterCommand(0, -ifCommandsCount);
+        
+        
+        return _preCondition
+            .Concat(new IfCommand(
+                _condition,
+                realBody,
+                Array.Empty<ICommand>()).Compile());
+    }
+}
+
 class WhileCommand
 {
     private readonly ICommand[] _condition;
@@ -56,16 +102,7 @@ class WhileCommand
 
     public IEnumerable<ICommand> Compile()
     {
-        var realBody = _body.Concat(new ICommand[]
-        {
-                new PutConstantToRegisterCommand(0, int.MaxValue), // Stub
-                new JumpCommand()
-        }).ToArray();
-        var ifCommandsCount = new IfCommand(_condition, realBody, Array.Empty<ICommand>())
-            .Compile().Count() - 3;
-        realBody[^2] = new PutConstantToRegisterCommand(0, -ifCommandsCount);
-
-        return new IfCommand(_condition, realBody, Array.Empty<ICommand>()).Compile();
+        return new ForCommand(Array.Empty<ICommand>(), _condition, Array.Empty<ICommand>(), _body).Compile();
     }
 }
 
