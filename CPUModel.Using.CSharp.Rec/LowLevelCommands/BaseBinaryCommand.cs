@@ -1,5 +1,7 @@
 ﻿
 
+using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+
 abstract class BaseBinaryCommand : ICommand
 {
     private readonly int _regNumberForResult;
@@ -11,15 +13,15 @@ abstract class BaseBinaryCommand : ICommand
         _command = command;
     }
 
-    public void Dump()
+    public void Dump(ExecutionContext context)
     {
         Console.Write($"{_command} r{_regNumberForResult}");
     }
 
-    public void Execute(int[] registers, ref int currentCommandIndex)
+    public void Execute(ExecutionContext executionContext)
     {
-        registers[_regNumberForResult] = ExecuteBinaryCommand(registers[0], registers[1]);
-        currentCommandIndex++;
+        executionContext.Registers[_regNumberForResult] = ExecuteBinaryCommand(executionContext.Registers[0], executionContext.Registers[1]);
+        executionContext.CurrentCommandIndex++;
     }
 
     protected abstract int ExecuteBinaryCommand(int left, int right);

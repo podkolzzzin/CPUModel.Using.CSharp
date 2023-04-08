@@ -3,15 +3,17 @@
 // a > b
 
 
+using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+
 class JumpCommand : ICommand
 {
-    public void Dump()
+    public void Dump(ExecutionContext context)
     {
         Console.Write("jmp");
     }
 
-    public void Execute(int[] registers, ref int currentCommandIndex)
+    public void Execute(ExecutionContext executionContext)
     {
-        currentCommandIndex += registers[0];
+        executionContext.CurrentCommandIndex += executionContext.Registers[0];
     }
 }

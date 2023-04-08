@@ -1,5 +1,7 @@
 ﻿
 
+using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+
 class PutConstantToRegisterCommand : ICommand
 {
     private readonly int _regNumberToWrite, _constant;
@@ -10,14 +12,14 @@ class PutConstantToRegisterCommand : ICommand
         _constant = constant;   
     }
 
-    public void Dump()
+    public void Dump(ExecutionContext context)
     {
         Console.Write($"put r{_regNumberToWrite} {_constant}");
     }
 
-    public void Execute(int[] registers, ref int currentCommandIndex)
+    public void Execute(ExecutionContext executionContext)
     {
-        registers[_regNumberToWrite] = _constant;
-        currentCommandIndex++;
+        executionContext.Registers[_regNumberToWrite] = _constant;
+        executionContext.CurrentCommandIndex++;
     }
 }

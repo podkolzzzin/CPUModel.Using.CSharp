@@ -2,25 +2,27 @@
 // 20 > 30
 
 
+using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+
 class WriteCommand : ICommand
 {
     private readonly int _regNumberToWriteFrom;
-    private readonly string _address;
+    private readonly int _stackAddress;
 
-    public WriteCommand(string address, int regNumberToWriteFrom)
+    public WriteCommand(int stackAddress, int regNumberToWriteFrom)
     {
-        _address = address;
+        _stackAddress = stackAddress;
         _regNumberToWriteFrom = regNumberToWriteFrom;
     }
 
-    public void Dump()
+    public void Dump(ExecutionContext context)
     {
-        Console.Write($"{_address} = r{_regNumberToWriteFrom}");
+        Console.Write($"{_stackAddress} = r{_regNumberToWriteFrom}");
     }
 
-    public void Execute(int[] registers, ref int currentCommandIndex)
+    public void Execute(ExecutionContext executionContext)
     {
-        Memory.Write(_address, registers[_regNumberToWriteFrom]);
-        currentCommandIndex++;
+        executionContext.Stack.Set(_stackAddress, executionContext.Registers[_regNumberToWriteFrom]);
+        executionContext.CurrentCommandIndex++;
     }
 }

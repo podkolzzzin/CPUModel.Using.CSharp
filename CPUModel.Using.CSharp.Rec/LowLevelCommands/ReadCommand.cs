@@ -2,25 +2,27 @@
 // 20 > 30
 
 
+using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+
 class ReadCommand : ICommand
 {
     private readonly int _regNumberToSaveReadValue;
-    private readonly string _address;
+    private readonly int _stackAddress;
 
-    public ReadCommand(string address, int regNumberToSaveReadValue)
+    public ReadCommand(int stackAddress, int regNumberToSaveReadValue)
     {
         _regNumberToSaveReadValue = regNumberToSaveReadValue;
-        _address = address;
+        _stackAddress = stackAddress;
     }
 
-    public void Dump()
+    public void Dump(ExecutionContext executionContext)
     {
-        Console.Write($"r{_regNumberToSaveReadValue} = {Memory.Read(_address)} {_address}");
+        Console.Write($"r{_regNumberToSaveReadValue} = {executionContext.Stack.Get(_stackAddress)}");
     }
 
-    public void Execute(int[] registers, ref int currentCommandIndex)
+    public void Execute(ExecutionContext executionContext)
     {
-        registers[_regNumberToSaveReadValue] = Memory.Read(_address);
-        currentCommandIndex++;
+        executionContext.Registers[_regNumberToSaveReadValue] = executionContext.Stack.Get(_stackAddress);
+        executionContext.CurrentCommandIndex++;
     }
 }

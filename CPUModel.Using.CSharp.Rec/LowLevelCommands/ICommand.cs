@@ -1,8 +1,10 @@
 ﻿
 
+using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+
 interface ICommand
 {
-    void Execute(int[] registers, ref int currentCommandIndex);
+    void Execute(ExecutionContext executionContext);
 
-    void Dump();
+    void Dump(ExecutionContext context);
 }

@@ -12,6 +12,8 @@
 
 
 
+using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+
 class OutputCommand : ICommand
 {
     private readonly string _text;
@@ -21,14 +23,14 @@ class OutputCommand : ICommand
         _text = text;
     }
 
-    public void Dump()
+    public void Dump(ExecutionContext context)
     {
         Console.Write("out");
     }
 
-    public void Execute(int[] registers, ref int currentCommandIndex)
+    public void Execute(ExecutionContext executionContext)
     {
         Console.Write(_text);
-        currentCommandIndex++;
+        executionContext.CurrentCommandIndex++;
     }
 }
