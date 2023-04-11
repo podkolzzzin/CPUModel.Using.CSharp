@@ -1,48 +1,55 @@
-﻿using CPUModel.Using.CSharp.Rec.LowLevelCommands;
-using ExecutionContext = CPUModel.Using.CSharp.Rec.LowLevelCommands.ExecutionContext;
+﻿using DevJunglesAssembler;
+using DevJunglesCompiler;
+using DevJunglesLanguage;
 
-var registers = new int[2];
+var compiler = new Compiler();
+var asm = compiler.Compile(MyProgram());
+
+var os = new DevJunglesVirtualMachine.OperationSystem();
+var process = os.CreateProcess(asm);
+process.Start();
+
+
 
 // for (var i = 0; i < 3; i++) 
 // {
 //     Console.WriteLine("#StopRussianAggression");
 // }
-
-var declarations = new ICommand[]
+Source MyProgram()
 {
-    new DeclareCommand(),
-    new PutConstantToRegisterCommand(0, 0),
-    new WriteCommand(0, 0),
-};
+    var builder = new SourceBuilder();
+    var declarations = new ICommand[]
+    {
+        new DeclareCommand(),
+        new PutConstantToRegisterCommand(0, 0),
+        new WriteCommand(0, 0),
+    };
 
-var condition = new ICommand[]
-{
-    new PutConstantToRegisterCommand(1, 3),
-    new ReadCommand(0, 0),
-    new LtCommand(0)
-};
+    var condition = new ICommand[]
+    {
+        new PutConstantToRegisterCommand(1, 3),
+        new ReadCommand(0, 0),
+        new LtCommand(0)
+    };
 
-var body = new ICommand[]
-{
-    new OutputCommand("#StopRussianAggression")
-}.ToArray();
+    var body = new ICommand[]
+    {
+        new OutputCommand("#StopRussianAggression")
+    }.ToArray();
 
-var increment = new IncrementCommand().Compile(0).ToArray();
-
-var commands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
-var execute = new ExecutionContext(registers, 0);
-while (execute.CurrentCommandIndex < commands.Length)
-{
-    Console.Write($"[{execute.CurrentCommandIndex.ToString().PadLeft(3, '0')}]");
-    var currentCommand = commands[execute.CurrentCommandIndex];
-    currentCommand.Dump(execute);
-    Console.CursorLeft = 60;
-    
-    currentCommand.Execute(execute);
-    Console.CursorLeft = 20;
-    registers.Dump();
-    Console.CursorLeft = 30;
-    Console.WriteLine();
+    var increment = new IncrementCommand().Compile(0).ToArray();
+    builder.Add(new ForCommand(declarations, condition, increment, body));
+    return builder.Build();
 }
 
+
+
+
+
+
+
+
+
 Console.ReadLine();
+
+

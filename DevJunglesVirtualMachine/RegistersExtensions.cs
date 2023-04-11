@@ -1,5 +1,7 @@
 ﻿
 
+namespace DevJunglesVirtualMachine;
+
 static class RegistersExtensions
 {
     public static void Dump(this int[] registers)
