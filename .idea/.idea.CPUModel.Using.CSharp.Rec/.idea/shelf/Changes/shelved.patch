@@ -1,0 +1,40 @@
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// 20 + 30\r\n// 20 > 30\r\n\r\n\r\nclass WriteCommand : ICommand\r\n{\r\n    private readonly int _regNumberToWriteFrom;\r\n    private readonly string _address;\r\n\r\n    public WriteCommand(string address, int regNumberToWriteFrom)\r\n    {\r\n        _address = address;\r\n        _regNumberToWriteFrom = regNumberToWriteFrom;\r\n    }\r\n\r\n    public void Dump()\r\n    {\r\n        Console.Write($\"{_address} = r{_regNumberToWriteFrom}\");\r\n    }\r\n\r\n    public void Execute(int[] registers, ref int currentCommandIndex)\r\n    {\r\n        Memory.Write(_address, registers[_regNumberToWriteFrom]);\r\n        currentCommandIndex++;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs	(date 1680542610749)
+@@ -5,22 +5,22 @@
+ class WriteCommand : ICommand
+ {
+     private readonly int _regNumberToWriteFrom;
+-    private readonly string _address;
++    private readonly int _address;
+ 
+-    public WriteCommand(string address, int regNumberToWriteFrom)
++    public WriteCommand(int offset, int regNumberToWriteFrom)
+     {
+-        _address = address;
++        _address = offset;
+         _regNumberToWriteFrom = regNumberToWriteFrom;
+     }
+ 
+-    public void Dump()
++    public void Dump(ExecutionContext executionContext)
+     {
+         Console.Write($"{_address} = r{_regNumberToWriteFrom}");
+     }
+ 
+-    public void Execute(int[] registers, ref int currentCommandIndex)
++    public void Execute(ExecutionContext executionContext)
+     {
+-        Memory.Write(_address, registers[_regNumberToWriteFrom]);
+-        currentCommandIndex++;
++        executionContext.Stack.Set(_address, executionContext.Registers[_regNumberToWriteFrom]);
++        executionContext.CurrentCommandIndex++;
+     }
+ }

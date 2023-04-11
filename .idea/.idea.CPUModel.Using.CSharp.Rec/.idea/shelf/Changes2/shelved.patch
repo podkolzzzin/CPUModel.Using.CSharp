@@ -1,0 +1,340 @@
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// int a = 50 + 40;\r\n// int b = 30 + 20;\r\n// a > b\r\n\r\n\r\nclass JumpCommand : ICommand\r\n{\r\n    public void Dump()\r\n    {\r\n        Console.Write(\"jmp\");\r\n    }\r\n\r\n    public void Execute(int[] registers, ref int currentCommandIndex)\r\n    {\r\n        currentCommandIndex += registers[0];\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs	(date 1680541479909)
+@@ -5,13 +5,13 @@
+ 
+ class JumpCommand : ICommand
+ {
+-    public void Dump()
++    public void Dump(ExecutionContext executionContext)
+     {
+         Console.Write("jmp");
+     }
+ 
+-    public void Execute(int[] registers, ref int currentCommandIndex)
++    public void Execute(ExecutionContext executionContext)
+     {
+-        currentCommandIndex += registers[0];
++        executionContext.CurrentCommandIndex += executionContext.Registers[0];
+     }
+ }
+\ No newline at end of file
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/IncrementCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class IncrementCommand\r\n{\r\n    private readonly string _address;\r\n\r\n    public IncrementCommand(string address)\r\n    {\r\n        _address = address;\r\n    }\r\n\r\n    public IEnumerable<ICommand> Compile()\r\n    {\r\n        yield return new ReadCommand(_address, 0);\r\n        yield return new PutConstantToRegisterCommand(1, 1);\r\n        yield return new AddCommand(0);\r\n        yield return new WriteCommand(_address, 0);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/IncrementCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/IncrementCommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/IncrementCommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/IncrementCommand.cs	(date 1680543326096)
+@@ -1,17 +1,23 @@
++using CPUModel.Using.CSharp.Rec.LowLevelCommands;
++
+ class IncrementCommand
+ {
+-    private readonly string _address;
++    private readonly string _name;
++    private readonly int _offset;
+ 
+-    public IncrementCommand(string address)
++    public IncrementCommand(string name, ref int varOffset)
+     {
+-        _address = address;
++        _offset = varOffset++;
++        _name = name;
+     }
+ 
+     public IEnumerable<ICommand> Compile()
+     {
+-        yield return new ReadCommand(_address, 0);
++        int varId = _offset;
++        yield return new DeclareCommand(ref varId, _name);
++        yield return new ReadCommand(_offset, _name, 0);
+         yield return new PutConstantToRegisterCommand(1, 1);
+         yield return new AddCommand(0);
+-        yield return new WriteCommand(_address, 0);
++        yield return new WriteCommand(_offset, 0);
+     }
+ }
+\ No newline at end of file
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/DeclareCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/DeclareCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/DeclareCommand.cs
+new file mode 100644
+--- /dev/null	(date 1680542153696)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/DeclareCommand.cs	(date 1680542153696)
+@@ -0,0 +1,21 @@
++namespace CPUModel.Using.CSharp.Rec.LowLevelCommands;
++
++public class DeclareCommand : ICommand
++{
++  private readonly int _offset;
++  private readonly string _name;
++  public DeclareCommand(ref int offset, string name)
++  {
++    _name = name;
++    _offset = offset++;
++  }
++  public void Execute(ExecutionContext executionContext)
++  {
++    executionContext.Stack.Push(0);
++    executionContext.CurrentCommandIndex++;
++  }
++  public void Dump(ExecutionContext executionContext)
++  {
++    Console.Write($"var {_name}({_offset})");
++  }
++}
+\ No newline at end of file
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n\r\nclass PutConstantToRegisterCommand : ICommand\r\n{\r\n    private readonly int _regNumberToWrite, _constant;\r\n\r\n    public PutConstantToRegisterCommand(int regNumberToWrite, int constant)\r\n    {\r\n        _regNumberToWrite = regNumberToWrite;\r\n        _constant = constant;   \r\n    }\r\n\r\n    public void Dump()\r\n    {\r\n        Console.Write($\"put r{_regNumberToWrite} {_constant}\");\r\n    }\r\n\r\n    public void Execute(int[] registers, ref int currentCommandIndex)\r\n    {\r\n        registers[_regNumberToWrite] = _constant;\r\n        currentCommandIndex++;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs	(date 1680541479890)
+@@ -10,14 +10,14 @@
+         _constant = constant;   
+     }
+ 
+-    public void Dump()
++    public void Dump(ExecutionContext executionContext)
+     {
+         Console.Write($"put r{_regNumberToWrite} {_constant}");
+     }
+ 
+-    public void Execute(int[] registers, ref int currentCommandIndex)
++    public void Execute(ExecutionContext executionContext)
+     {
+-        registers[_regNumberToWrite] = _constant;
+-        currentCommandIndex++;
++        executionContext.Registers[_regNumberToWrite] = _constant;
++        executionContext.CurrentCommandIndex++;
+     }
+ }
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// 20 + 30\r\n// 20 > 30\r\n\r\n\r\nclass ReadCommand : ICommand\r\n{\r\n    private readonly int _regNumberToSaveReadValue;\r\n    private readonly string _address;\r\n\r\n    public ReadCommand(string address, int regNumberToSaveReadValue)\r\n    {\r\n        _regNumberToSaveReadValue = regNumberToSaveReadValue;\r\n        _address = address;\r\n    }\r\n\r\n    public void Dump()\r\n    {\r\n        Console.Write($\"r{_regNumberToSaveReadValue} = {Memory.Read(_address)} {_address}\");\r\n    }\r\n\r\n    public void Execute(int[] registers, ref int currentCommandIndex)\r\n    {\r\n        registers[_regNumberToSaveReadValue] = Memory.Read(_address);\r\n        currentCommandIndex++;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs	(date 1680542610737)
+@@ -1,26 +1,27 @@
+ // 20 + 30
+ // 20 > 30
+ 
+-
+ class ReadCommand : ICommand
+ {
++    private readonly string _name;
+     private readonly int _regNumberToSaveReadValue;
+-    private readonly string _address;
++    private readonly int _offset;
+ 
+-    public ReadCommand(string address, int regNumberToSaveReadValue)
++    public ReadCommand(int offset, string name, int regNumberToSaveReadValue)
+     {
++        _name = name;
+         _regNumberToSaveReadValue = regNumberToSaveReadValue;
+-        _address = address;
++        _offset = offset;
+     }
+ 
+-    public void Dump()
++    public void Dump(ExecutionContext executionContext)
+     {
+-        Console.Write($"r{_regNumberToSaveReadValue} = {Memory.Read(_address)} {_address}");
++        Console.Write($"r{_regNumberToSaveReadValue} = {executionContext.Stack.Peek(_offset)} {_name}({_offset})");
+     }
+ 
+-    public void Execute(int[] registers, ref int currentCommandIndex)
++    public void Execute(ExecutionContext executionContext)
+     {
+-        registers[_regNumberToSaveReadValue] = Memory.Read(_address);
+-        currentCommandIndex++;
++        executionContext.Registers[_regNumberToSaveReadValue] = executionContext.Stack.Peek(_offset);
++        executionContext.CurrentCommandIndex++;
+     }
+ }
+Index: CPUModel.Using.CSharp.Rec/Program.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>var registers = new int[2];\r\n\r\n// for (var i = 0; i < 3; i++) \r\n// {\r\n//     Console.WriteLine(\"#StopRussianAggression\");\r\n// }\r\n\r\nvar declarations = new ICommand[]\r\n{\r\n    new PutConstantToRegisterCommand(0, 0),\r\n    new WriteCommand(\"i\", 0),\r\n};\r\n\r\nvar condition = new ICommand[]\r\n{\r\n    new PutConstantToRegisterCommand(1, 3),\r\n    new ReadCommand(\"i\", 0),\r\n    new LtCommand(0)\r\n};\r\n\r\nvar body = new ICommand[]\r\n{\r\n    new OutputCommand(\"#StopRussianAggression\")\r\n}.ToArray();\r\n\r\nvar increment = new IncrementCommand(\"i\").Compile().ToArray();\r\n\r\nvar commands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();\r\n\r\nfor (int i = 0; i < commands.Length;)\r\n{\r\n    Console.Write($\"[{i.ToString().PadLeft(3, '0')}]\");\r\n    var currentCommand = commands[i];\r\n    currentCommand.Dump();\r\n    Console.CursorLeft = 60;\r\n    currentCommand.Execute(registers, ref i);\r\n    Console.CursorLeft = 20;\r\n    registers.Dump();\r\n    Console.CursorLeft = 30;\r\n    Memory.Dump();\r\n    Console.WriteLine();\r\n}\r\n\r\nConsole.ReadLine();
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/Program.cs b/CPUModel.Using.CSharp.Rec/Program.cs
+--- a/CPUModel.Using.CSharp.Rec/Program.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/Program.cs	(date 1680542607212)
+@@ -1,3 +1,5 @@
++using CPUModel.Using.CSharp.Rec.LowLevelCommands;
++
+ var registers = new int[2];
+ 
+ // for (var i = 0; i < 3; i++) 
+@@ -5,16 +7,20 @@
+ //     Console.WriteLine("#StopRussianAggression");
+ // }
+ 
++int varOffset = 0;
++int iOffset = varOffset;
++
+ var declarations = new ICommand[]
+ {
++    new DeclareCommand(ref varOffset, "i"),
+     new PutConstantToRegisterCommand(0, 0),
+-    new WriteCommand("i", 0),
++    new WriteCommand(iOffset, 0),
+ };
+ 
+ var condition = new ICommand[]
+ {
+     new PutConstantToRegisterCommand(1, 3),
+-    new ReadCommand("i", 0),
++    new ReadCommand(iOffset, "i", 0),
+     new LtCommand(0)
+ };
+ 
+@@ -23,17 +29,20 @@
+     new OutputCommand("#StopRussianAggression")
+ }.ToArray();
+ 
+-var increment = new IncrementCommand("i").Compile().ToArray();
++var increment = new IncrementCommand("i", ref varOffset).Compile().ToArray();
+ 
+ var commands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
+ 
++var context = new ExecutionContext(registers, 0);
+ for (int i = 0; i < commands.Length;)
+ {
+     Console.Write($"[{i.ToString().PadLeft(3, '0')}]");
+     var currentCommand = commands[i];
+-    currentCommand.Dump();
++    currentCommand.Dump(context);
+     Console.CursorLeft = 60;
+-    currentCommand.Execute(registers, ref i);
++    var execute = new ExecutionContext(registers, i);
++    currentCommand.Execute(execute);
++    i = execute.CurrentCommandIndex;
+     Console.CursorLeft = 20;
+     registers.Dump();
+     Console.CursorLeft = 30;
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n\r\ninterface ICommand\r\n{\r\n    void Execute(int[] registers, ref int currentCommandIndex);\r\n\r\n    void Dump();\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs	(date 1680541479885)
+@@ -2,7 +2,7 @@
+ 
+ interface ICommand
+ {
+-    void Execute(int[] registers, ref int currentCommandIndex);
++    void Execute(ExecutionContext executionContext);
+ 
+-    void Dump();
++    void Dump(ExecutionContext executionContext);
+ }
+\ No newline at end of file
+Index: CPUModel.Using.CSharp.Rec/ExecutionContext.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/ExecutionContext.cs b/CPUModel.Using.CSharp.Rec/ExecutionContext.cs
+new file mode 100644
+--- /dev/null	(date 1680541568801)
++++ b/CPUModel.Using.CSharp.Rec/ExecutionContext.cs	(date 1680541568801)
+@@ -0,0 +1,11 @@
++public class ExecutionContext
++{
++  public ExecutionContext(int[] registers, int currentCommandIndex)
++  {
++    Registers = registers;
++    CurrentCommandIndex = currentCommandIndex;
++  }
++  public Stack Stack { get; } = new (1024);
++  public int[] Registers { get; }
++  public int CurrentCommandIndex { get; set; }
++}
+\ No newline at end of file
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// if (10 > 40) \r\n// {\r\n// \r\n// }\r\n// else \r\n// {\r\n// \r\n// }\r\n\r\n\r\n\r\n\r\n\r\n\r\nclass OutputCommand : ICommand\r\n{\r\n    private readonly string _text;\r\n\r\n    public OutputCommand(string text)\r\n    {\r\n        _text = text;\r\n    }\r\n\r\n    public void Dump()\r\n    {\r\n        Console.Write(\"out\");\r\n    }\r\n\r\n    public void Execute(int[] registers, ref int currentCommandIndex)\r\n    {\r\n        Console.Write(_text);\r\n        currentCommandIndex++;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs	(date 1680541479904)
+@@ -21,14 +21,14 @@
+         _text = text;
+     }
+ 
+-    public void Dump()
++    public void Dump(ExecutionContext executionContext)
+     {
+         Console.Write("out");
+     }
+ 
+-    public void Execute(int[] registers, ref int currentCommandIndex)
++    public void Execute(ExecutionContext executionContext)
+     {
+         Console.Write(_text);
+-        currentCommandIndex++;
++        executionContext.CurrentCommandIndex++;
+     }
+ }
+Index: CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n\r\nabstract class BaseBinaryCommand : ICommand\r\n{\r\n    private readonly int _regNumberForResult;\r\n    private readonly string _command;\r\n\r\n    public BaseBinaryCommand(int regNumberForResult, string command)\r\n    {\r\n        _regNumberForResult = regNumberForResult;\r\n        _command = command;\r\n    }\r\n\r\n    public void Dump()\r\n    {\r\n        Console.Write($\"{_command} r{_regNumberForResult}\");\r\n    }\r\n\r\n    public void Execute(int[] registers, ref int currentCommandIndex)\r\n    {\r\n        registers[_regNumberForResult] = ExecuteBinaryCommand(registers[0], registers[1]);\r\n        currentCommandIndex++;\r\n    }\r\n\r\n    protected abstract int ExecuteBinaryCommand(int left, int right);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs b/CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs
+--- a/CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs	(revision 95a0b47b35a35a886c2f3a605545a0997064cc06)
++++ b/CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs	(date 1680541479899)
+@@ -11,15 +11,15 @@
+         _command = command;
+     }
+ 
+-    public void Dump()
++    public void Dump(ExecutionContext executionContext)
+     {
+         Console.Write($"{_command} r{_regNumberForResult}");
+     }
+ 
+-    public void Execute(int[] registers, ref int currentCommandIndex)
++    public void Execute(ExecutionContext executionContext)
+     {
+-        registers[_regNumberForResult] = ExecuteBinaryCommand(registers[0], registers[1]);
+-        currentCommandIndex++;
++        executionContext.Registers[_regNumberForResult] = ExecuteBinaryCommand(executionContext.Registers[0], executionContext.Registers[1]);
++        executionContext.CurrentCommandIndex++;
+     }
+ 
+     protected abstract int ExecuteBinaryCommand(int left, int right);

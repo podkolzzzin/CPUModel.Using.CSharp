@@ -1,0 +1,45 @@
+Index: CPUModel.Using.CSharp.Rec/Stack.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CPUModel.Using.CSharp.Rec/Stack.cs b/CPUModel.Using.CSharp.Rec/Stack.cs
+new file mode 100644
+--- /dev/null	(date 1680542610712)
++++ b/CPUModel.Using.CSharp.Rec/Stack.cs	(date 1680542610712)
+@@ -0,0 +1,34 @@
++public class Stack
++{
++    public Stack(int size)
++    {
++        this._stack = new int[size];
++        this._top = 0;
++    }
++
++    public void Push(int item)
++    {
++        _stack[_top] = item;
++        _top++;
++    }
++
++    public int Peek(int pos)
++    {
++        return _stack[pos];
++    }
++
++    public void Set(int offset, int value)
++    {
++        _stack[offset] = value;
++    }
++
++    public int Pop()
++    {
++        _top--;
++        return _stack[_top];
++    }
++
++    private readonly int[] _stack;
++
++    private int _top;
++}
+\ No newline at end of file
