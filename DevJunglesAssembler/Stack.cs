@@ -2,24 +2,37 @@
 
 public class Stack
 {
-    private readonly int[] _data = new int[256];
+    private readonly Memory<int> _data;
     private int _top = -1;
+
+    public Stack(Memory<int> data)
+    {
+        _data = data;
+    }
 
     public void Push(int value)
     {
         _top++;
-        _data[_top] = value;
+        _data.Span[_top] = value;
     }
 
-    public int Pop()
+    public void Pop(int count)
     {
-        var value = _data[_top];
-        _top--;
-        return value;
+        _top -= count;
     }
+
+    public void Dump()
+    {
+        for (int i = 0; i < _top; i++)
+        {
+            Console.Write(Get(i).ToString().PadLeft(2));
+            Console.Write(" ");
+        }
+    }
+    
     public void Set(int stackAddress, int val)
     {
-        _data[stackAddress] = val;
+        _data.Span[_top - stackAddress] = val;
     }
-    public int Get(int stackAddress) => _data[stackAddress];
+    public int Get(int stackAddress) => _data.Span[_top - stackAddress];
 }

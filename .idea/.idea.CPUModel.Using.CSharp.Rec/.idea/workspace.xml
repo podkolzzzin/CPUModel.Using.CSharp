@@ -5,31 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be81c20-24fc-401b-ac1b-ca042767256c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DevJunglesCompiler/Compiler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DevJunglesCompiler/Source.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DevJunglesLanguage/IHighLevelCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/ForCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IncrementCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/WhileCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/AddCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/DeclareCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ExecutionContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/GtCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/LtCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/SubtractCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/DevJunglesLanguage/Command.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DevJunglesLanguage/FunctionCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DevJunglesLanguage/LongBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/RegistersExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesVirtualMachine/RegistersExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Stack.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/AddCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/BaseBinaryCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/DeclareCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/GtCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/ICommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/JumpCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/LtCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/OutputCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/PutConstantToRegisterCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/ReadCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/Stack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesAssembler/Stack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/SubtractCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/WriteCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/Compiler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/Compiler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/Source.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/Source.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/SourceBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/SourceBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/DevJunglesLanguage.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/DevJunglesLanguage.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/ForCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/ForCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IHighLevelCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IHighLevelCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IfCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IncrementCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/WhileCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,22 +41,19 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36e740b59df23626d207e72ea77e34298e53dd99db463eee529f8c416b5664/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/648fe63694d229452316ad64668c984e3a887be64c28f2142cd9df3e36675e/EnumerableHelpers.Linq.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a9b35bc5d5da43a49af8d74dac7ab37ccc1bb654cb7dfe8f9a21501181ed9b/CastHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c0c138cb4084805dd161ef360107cdffe8ad0cefe3ac8d5e7b89445efbbfcc/LargeArrayBuilder.SpeedOpt.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5a2ccf8d64e7aa05089a63a768244d9f2dc55854b3a5ab1b61126bdc8f7ebe2/ToCollection.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/AddCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/BaseBinaryCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/DeclareCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/GtCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/JumpCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/LtCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/OutputCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/PutConstantToRegisterCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/ReadCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/SubtractCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/WriteCommand.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -110,8 +111,24 @@
       <workItem from="1680538110120" duration="9718000" />
       <workItem from="1680971870585" duration="2900000" />
       <workItem from="1680974950774" duration="2681000" />
-      <workItem from="1681195189851" duration="1781000" />
+      <workItem from="1681195189851" duration="2786000" />
+      <workItem from="1681384997500" duration="40271000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactor code: introduce Process, Thread, OperationSystem, Assembly, Compiler, Source. Split into Projects">
+      <created>1681198332345</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681198332345</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add missed files">
+      <created>1681198373223</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681198373223</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,5 +138,53 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Refactor code: introduce Process, Thread, OperationSystem, Assembly, Compiler, Source. Split into Projects" />
+    <MESSAGE value="Add missed files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add missed files" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs</url>
+          <line>256</line>
+          <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp.Rec\DevJunglesVirtualMachine\OperationSystem.cs" initialLine="256" containingFunctionPresentation="constructor 'Assembly'">
+            <startOffsets>
+              <option value="8005" />
+            </startOffsets>
+            <endOffsets>
+              <option value="8006" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DevJunglesCompiler/Compiler.cs</url>
+          <line>12</line>
+          <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp.Rec\DevJunglesCompiler\Compiler.cs" initialLine="12" containingFunctionPresentation="method 'Compile'">
+            <startOffsets>
+              <option value="296" />
+            </startOffsets>
+            <endOffsets>
+              <option value="352" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs</url>
+          <line>192</line>
+          <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp.Rec\DevJunglesVirtualMachine\OperationSystem.cs" initialLine="192" containingFunctionPresentation="method 'Execute'">
+            <startOffsets>
+              <option value="5685" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5748" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

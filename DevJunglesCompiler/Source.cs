@@ -1,4 +1,5 @@
 using DevJunglesAssembler;
+using DevJunglesLanguage;
 
 namespace DevJunglesCompiler;
 

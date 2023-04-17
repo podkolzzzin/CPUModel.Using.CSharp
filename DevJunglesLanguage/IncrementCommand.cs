@@ -1,4 +1,4 @@
-﻿using DevJunglesAssembler;
+﻿using static DevJunglesLanguage.Command;
 
 namespace DevJunglesLanguage;
 
@@ -10,9 +10,9 @@ public class IncrementCommand
 
     public IEnumerable<ICommand> Compile(int stackAddress)
     {
-        yield return new ReadCommand(stackAddress, 0);
-        yield return new PutConstantToRegisterCommand(1, 1);
-        yield return new AddCommand(0);
-        yield return new WriteCommand(stackAddress, 0);
+        yield return Read(0, stackAddress);
+        yield return Put(1, 1);
+        yield return Add(0);
+        yield return Write(0, stackAddress);
     }
 }

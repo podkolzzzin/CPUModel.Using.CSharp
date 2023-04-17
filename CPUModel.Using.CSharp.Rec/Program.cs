@@ -1,6 +1,7 @@
 ﻿using DevJunglesAssembler;
 using DevJunglesCompiler;
 using DevJunglesLanguage;
+using static DevJunglesLanguage.Command;
 
 var compiler = new Compiler();
 var asm = compiler.Compile(MyProgram());
@@ -18,27 +19,77 @@ process.Start();
 Source MyProgram()
 {
     var builder = new SourceBuilder();
-    var declarations = new ICommand[]
+
+    var function = new FunctionCommand(1);
+    function.Body = new ISomeCommand[] {
+        Print("Does not matter"),
+        Read(0, 0),
+        Put(0, 10),
+        Add(0)
+    }; // f(x) -> print("Does not matter"); return x + 10;
+    // fib(a, b, i, j) -> a = a + b; i = i + 1; if (i < j) a = fib(b, a, i, j); else return a;
+
+    var fibonachi = new FunctionCommand(4);
+    fibonachi.Body = new ISomeCommand[] {
+        // a:4, b:3, i:2, j:1
+        Read(0, 4),
+        Read(1, 3),
+        Add(0),
+        Write(0, 4),
+        Read(0, 2),
+        Put(1, 1),
+        Add(0),
+        Write(0, 2),
+    }.Concat(new ISomeCommand[] {
+        new IfCommand(new ISomeCommand[] {
+                Read(0, 2),
+                Read(1, 1),
+                Lt(0),
+            }, new ISomeCommand[] {
+                new CallCommand(
+                    new [] {
+                        Read(0, 3),
+                        Read(0, 4),
+                        Read(0, 2),
+                        Read(0, 1),
+                    }, fibonachi),
+                Write(0, 4),
+            },
+            Array.Empty<ISomeCommand>()),
+        Read(0, 4),
+    }).ToArray();
+
+
+    var declarations = new []
     {
-        new DeclareCommand(),
-        new PutConstantToRegisterCommand(0, 0),
-        new WriteCommand(0, 0),
+        Push(0),
+        Put(0, 0),
+        Write(0, 0),
     };
 
-    var condition = new ICommand[]
+    var condition = new []
     {
-        new PutConstantToRegisterCommand(1, 3),
-        new ReadCommand(0, 0),
-        new LtCommand(0)
+        Put(1, 3),
+        Read(0, 0),
+        Lt(0)
     };
 
-    var body = new ICommand[]
+    var body = new []
     {
-        new OutputCommand("#StopRussianAggression")
+        Print("#StopRussianAggression")
     }.ToArray();
 
     var increment = new IncrementCommand().Compile(0).ToArray();
-    builder.Add(new ForCommand(declarations, condition, increment, body));
+    var forCommand = new ForCommand(declarations, condition, increment, body);
+    builder.Add(Print("#StopRussianAggression"));
+    builder.Add(new CallCommand(new [] { // fib(1, 1, 2, 7) //  1 1 2 3 5
+        Put(0, 1),
+        Put(0, 1),
+        Put(0, 2),
+        Put(0, 7),
+    }, fibonachi));
+    builder.Add(fibonachi);
+    
     return builder.Build();
 }
 

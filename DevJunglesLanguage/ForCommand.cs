@@ -4,25 +4,23 @@ namespace DevJunglesLanguage;
 
 public class ForCommand : IHighLevelCommand
 {
-    private readonly ICommand[] _declarations;
-    private readonly ICommand[] _condition;
-    private readonly ICommand[] _increment;
-    private readonly ICommand[] _body;
+    private readonly ISomeCommand[] _declarations;
+    private readonly WhileCommand _whileCommand;
 
-    public ForCommand(ICommand[] declarations, ICommand[] condition, ICommand[] increment, ICommand[] body)
+    public ForCommand(ISomeCommand[] declarations, ISomeCommand[] condition, ISomeCommand[] increment, ISomeCommand[] body)
     {
         _declarations = declarations;
-        _condition = condition;
-        _increment = increment;
-        _body = body;
+
+        _whileCommand = new WhileCommand(condition, body.Concat(increment).ToArray());
     }
 
-    public IEnumerable<ICommand> Compile()
-    {
-        var body = _body.Concat(_increment).ToArray();
+    public int Size => _declarations.Sum(x => x.Size) + _whileCommand.Size;
 
-        var loop = new WhileCommand(_condition, body).Compile();
-        
-        return _declarations.Concat(loop);
+    public void Compile(IEmitter emitter)
+    {
+        foreach (var command in _declarations)
+            emitter.Emit(command);
+
+        _whileCommand.Compile(emitter);
     }
 }

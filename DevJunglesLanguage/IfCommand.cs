@@ -1,39 +1,42 @@
-﻿using DevJunglesAssembler;
+﻿using static DevJunglesLanguage.Command;
 
 namespace DevJunglesLanguage;
 
-public class IfCommand
+public class IfCommand : IHighLevelCommand
 {
-    private readonly ICommand[] _condition, _ifClause, _elseClause;
+    private readonly ISomeCommand[] _condition, _ifClause, _elseClause;
 
-    public IfCommand(ICommand[] condition, ICommand[] ifClause, ICommand[] elseClause)
+    public IfCommand(ISomeCommand[] condition, ISomeCommand[] ifClause, ISomeCommand[] elseClause)
     {
         _condition = condition;
         _ifClause = ifClause;
         _elseClause = elseClause;
     }
 
-    public IEnumerable<ICommand> Compile()
+    public void Compile(IEmitter emitter)
     {
         foreach (var command in _condition)
-            yield return command;
+            emitter.Emit(command);
 
-        yield return new PutConstantToRegisterCommand(1, 1);
-        yield return new AddCommand(0);
-        yield return new JumpCommand();
+        emitter.Emit(Put(1, 1));
+        emitter.Emit(Add(0));
+        emitter.Emit(Jmp());
 
-        yield return new PutConstantToRegisterCommand(1, _ifClause.Length + 3);
-        yield return new PutConstantToRegisterCommand(0, 0);
-        yield return new AddCommand(0);
-        yield return new JumpCommand();
+        var ifClause = _ifClause.Sum(x => x.Size);
+        var elseClause = _elseClause.Sum(x => x.Size);
+        emitter.Emit(Put(1, ifClause + 3));
+        emitter.Emit(Put(0, 0));
+        emitter.Emit(Add(0));
+        emitter.Emit(Jmp());
 
         foreach (var command in _ifClause)
-            yield return command;
+            emitter.Emit(command);
 
-        yield return new PutConstantToRegisterCommand(0, _elseClause.Length + 1);
-        yield return new JumpCommand();
+        emitter.Emit(Put(0, elseClause + 1));
+        emitter.Emit(Jmp());
 
         foreach (var command in _elseClause)
-            yield return command;
+            emitter.Emit(command);
     }
+    public int Size => _condition.Sum(x => x.Size) + _ifClause.Sum(x => x.Size) + _elseClause.Sum(x => x.Size) + 9;
 }
