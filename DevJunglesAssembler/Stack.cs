@@ -1,11 +1,13 @@
-﻿namespace DevJunglesAssembler;
+﻿using System.Buffers;
 
-public class Stack
+namespace DevJunglesAssembler;
+
+public ref struct Stack
 {
-    private readonly Memory<int> _data;
+    private readonly Span<int> _data;
     private int _top = -1;
 
-    public Stack(Memory<int> data)
+    public Stack(Span<int> data)
     {
         _data = data;
     }
@@ -13,7 +15,7 @@ public class Stack
     public void Push(int value)
     {
         _top++;
-        _data.Span[_top] = value;
+        _data[_top] = value;
     }
 
     public void Pop(int count)
@@ -32,7 +34,7 @@ public class Stack
     
     public void Set(int stackAddress, int val)
     {
-        _data.Span[_top - stackAddress] = val;
+        _data[_top - stackAddress] = val;
     }
-    public int Get(int stackAddress) => _data.Span[_top - stackAddress];
+    public int Get(int stackAddress) => _data[_top - stackAddress];
 }

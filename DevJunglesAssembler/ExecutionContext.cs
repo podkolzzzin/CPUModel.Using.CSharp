@@ -1,15 +1,15 @@
 ﻿namespace DevJunglesAssembler;
 
-public class ExecutionContext
+public ref struct ExecutionContext
 {
-  public ExecutionContext(int[] registers, Memory<int> stack, int currentCommandIndex)
+  public ExecutionContext(int[] registers, Span<int> stack, int currentCommandIndex)
   {
     Registers = registers;
     CurrentCommandIndex = currentCommandIndex;
     Stack = new(stack);
   }
   public int[] Registers { get; }
-  public Stack Stack { get; }
+  public Stack Stack;
   public int CurrentCommandIndex { get; set; }
 }
 

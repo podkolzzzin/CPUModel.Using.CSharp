@@ -1,5 +1,4 @@
 ﻿
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using DevJunglesAssembler;
 using ExecutionContext = DevJunglesAssembler.ExecutionContext;
@@ -77,8 +76,8 @@ public class Process
     public void Execute(Span<AsmCommand> commands)
     {
       int address = _parent.Malloc(256);
-      var stackByteMemory = _parent._memory.AsMemory(address, 256);
-      var stackMemory = Unsafe.As<Memory<byte>, Memory<int>>(ref stackByteMemory).Slice(0, 256 / 4);
+      var stackByteMemory = _parent._memory.AsSpan(address, 256);
+      var stackMemory = MemoryMarshal.Cast<byte, int>(stackByteMemory);
       
       var context = new ExecutionContext(new int[2], stackMemory, 0);
 
@@ -92,7 +91,7 @@ public class Process
         currentCommand.Dump(context);
         Console.CursorLeft = 60;
     
-        currentCommand.Execute(context);
+        currentCommand.Execute(ref context);
         Console.CursorLeft = 20;
         context.Registers.Dump();
         Console.CursorLeft = 30;
@@ -152,7 +151,7 @@ public static class AsmCommandExtensions
       Console.Write(dump);
   }
   
-  public static void Execute(this AsmCommand cmd, ExecutionContext context)
+  public static void Execute(this AsmCommand cmd, ref ExecutionContext context)
   {
     switch (cmd.Command)
     {

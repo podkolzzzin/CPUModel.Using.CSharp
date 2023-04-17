@@ -4,18 +4,9 @@
     <projectFile>CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be81c20-24fc-401b-ac1b-ca042767256c" name="Changes" comment="Added stack implementation and fibbonachi alg">
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/Source.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/Source.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/SourceBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/SourceBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/Command.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/ForCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/ForCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/FunctionCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/FunctionCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IHighLevelCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IHighLevelCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IfCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IncrementCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/LongBuilder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/WhileCommand.cs" afterDir="false" />
+    <list default="true" id="4be81c20-24fc-401b-ac1b-ca042767256c" name="Changes" comment="Refactor a bit">
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/Stack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesAssembler/Stack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +28,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c0c138cb4084805dd161ef360107cdffe8ad0cefe3ac8d5e7b89445efbbfcc/LargeArrayBuilder.SpeedOpt.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5a2ccf8d64e7aa05089a63a768244d9f2dc55854b3a5ab1b61126bdc8f7ebe2/ToCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/andriipodkolzin/source/repos/CPUModel.Using.CSharp.Rec/DevJunglesLanguage/Command.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -95,7 +87,7 @@
       <workItem from="1680971870585" duration="2900000" />
       <workItem from="1680974950774" duration="2681000" />
       <workItem from="1681195189851" duration="2786000" />
-      <workItem from="1681384997500" duration="41109000" />
+      <workItem from="1681384997500" duration="41382000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor code: introduce Process, Thread, OperationSystem, Assembly, Compiler, Source. Split into Projects">
       <created>1681198332345</created>
@@ -118,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681733570277</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactor a bit">
+      <created>1681734514066</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681734514066</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,20 +130,21 @@
     <MESSAGE value="Refactor code: introduce Process, Thread, OperationSystem, Assembly, Compiler, Source. Split into Projects" />
     <MESSAGE value="Add missed files" />
     <MESSAGE value="Added stack implementation and fibbonachi alg" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added stack implementation and fibbonachi alg" />
+    <MESSAGE value="Refactor a bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor a bit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs</url>
-          <line>233</line>
+          <line>232</line>
           <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp.Rec\DevJunglesVirtualMachine\OperationSystem.cs" initialLine="256" containingFunctionPresentation="constructor 'Assembly'">
             <startOffsets>
-              <option value="6474" />
+              <option value="6412" />
             </startOffsets>
             <endOffsets>
-              <option value="6475" />
+              <option value="6413" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />
@@ -164,16 +164,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs</url>
-          <line>192</line>
+          <line>191</line>
           <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp.Rec\DevJunglesVirtualMachine\OperationSystem.cs" initialLine="192" containingFunctionPresentation="method 'Execute'">
             <startOffsets>
-              <option value="5685" />
+              <option value="5623" />
             </startOffsets>
             <endOffsets>
-              <option value="5748" />
+              <option value="5686" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs</url>
+          <line>83</line>
+          <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp.Rec\DevJunglesVirtualMachine\OperationSystem.cs" initialLine="83" containingFunctionPresentation="method 'Execute'">
+            <startOffsets>
+              <option value="1998" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2051" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
