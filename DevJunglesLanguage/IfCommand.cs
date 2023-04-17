@@ -4,9 +4,9 @@ namespace DevJunglesLanguage;
 
 public class IfCommand : IHighLevelCommand
 {
-    private readonly ISomeCommand[] _condition, _ifClause, _elseClause;
+    private readonly ICommand[] _condition, _ifClause, _elseClause;
 
-    public IfCommand(ISomeCommand[] condition, ISomeCommand[] ifClause, ISomeCommand[] elseClause)
+    public IfCommand(ICommand[] condition, ICommand[] ifClause, ICommand[] elseClause)
     {
         _condition = condition;
         _ifClause = ifClause;

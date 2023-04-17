@@ -8,23 +8,23 @@ public class SourceBuilder
 {
   private class Emitter : IEmitter
   {
-    private readonly ICommand[] _commands;
+    private readonly ISimpleCommand[] _commands;
     public int Position { get; set; }
 
     public Emitter(int size)
     {
-      _commands = new ICommand[size];
+      _commands = new ISimpleCommand[size];
     }
     
-    private void Add(ICommand command)
+    private void Add(ISimpleCommand command)
     {
       _commands[Position] = command;
       Position++;
     }
     
-    public void Emit(ISomeCommand command, Action<ICommand>? processor = null)
+    public void Emit(ICommand command, Action<ISimpleCommand>? processor = null)
     {
-      if (command is ICommand cmd)
+      if (command is ISimpleCommand cmd)
       {
         processor?.Invoke(cmd);
         Add(cmd);
@@ -34,13 +34,13 @@ public class SourceBuilder
       else
         throw new Exception("Unknown command type");
     }
-    public ICommand[] ToArray() => _commands;
+    public ISimpleCommand[] ToArray() => _commands;
   }
   
   private readonly List<FunctionCommand> _functions = new();
-  private readonly List<ISomeCommand> _commands = new();
+  private readonly List<ICommand> _commands = new();
 
-  public SourceBuilder Add(ICommand command)
+  public SourceBuilder Add(ISimpleCommand command)
   {
     _commands.Add(command);
     return this;

@@ -8,7 +8,7 @@ public class IncrementCommand
     {
     }
 
-    public IEnumerable<ICommand> Compile(int stackAddress)
+    public IEnumerable<ISimpleCommand> Compile(int stackAddress)
     {
         yield return Read(0, stackAddress);
         yield return Put(1, 1);

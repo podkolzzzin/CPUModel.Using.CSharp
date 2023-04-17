@@ -11,7 +11,7 @@ public class FunctionCommand : IHighLevelCommand
     _argsCount = argsCount;
   }
   
-  public ISomeCommand[] Body { get; set; }
+  public ICommand[] Body { get; set; }
   
   public int Position { get; private set; }
   
@@ -33,9 +33,9 @@ public class FunctionCommand : IHighLevelCommand
 
 public class CallCommand : IHighLevelCommand
 {
-  private readonly ICommand[] _arguments;
+  private readonly ISimpleCommand[] _arguments;
   private readonly FunctionCommand _functionCommand;
-  public CallCommand(ICommand[] arguments, FunctionCommand functionCommand)
+  public CallCommand(ISimpleCommand[] arguments, FunctionCommand functionCommand)
   {
     _arguments = arguments;
     _functionCommand = functionCommand;
@@ -55,7 +55,7 @@ public class CallCommand : IHighLevelCommand
     emitter.Emit(Put(1, _functionCommand.Position));
     emitter.Emit(JmpTo(1));
   }
-  private ICommand Offset(int i, ICommand command)
+  private ISimpleCommand Offset(int i, ISimpleCommand command)
   {
     var cmd = command.AsBytes();
     return cmd.Command == Commands.Read ? Read(cmd.Register1, cmd.LeftOperand + i) : command;

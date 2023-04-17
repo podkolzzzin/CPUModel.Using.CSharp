@@ -4,10 +4,10 @@ namespace DevJunglesLanguage;
 
 public class ForCommand : IHighLevelCommand
 {
-    private readonly ISomeCommand[] _declarations;
+    private readonly ICommand[] _declarations;
     private readonly WhileCommand _whileCommand;
 
-    public ForCommand(ISomeCommand[] declarations, ISomeCommand[] condition, ISomeCommand[] increment, ISomeCommand[] body)
+    public ForCommand(ICommand[] declarations, ICommand[] condition, ICommand[] increment, ICommand[] body)
     {
         _declarations = declarations;
 

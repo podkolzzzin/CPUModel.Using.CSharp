@@ -1,28 +1,26 @@
-using DevJunglesAssembler;
 using DevJunglesVirtualMachine;
-using ExecutionContext = DevJunglesAssembler.ExecutionContext;
 
 namespace DevJunglesLanguage;
 
-public interface IHighLevelCommand : ISomeCommand
+public interface IHighLevelCommand : ICommand
 {
   void Compile(IEmitter emitter);
+}
+
+public interface ISimpleCommand : ICommand
+{
+  int ICommand.Size => 1;
+
+  AsmCommand AsBytes();
+}
+
+public interface ICommand
+{
+  int Size { get; }
 }
 
 public interface IEmitter
 {
   int Position { get; }
-  void Emit(ISomeCommand command, Action<ICommand>? processor = null);
-}
-
-public interface ICommand : ISomeCommand
-{
-  int ISomeCommand.Size => 1;
-
-  AsmCommand AsBytes();
-}
-
-public interface ISomeCommand
-{
-  int Size { get; }
+  void Emit(ICommand command, Action<ISimpleCommand>? processor = null);
 }

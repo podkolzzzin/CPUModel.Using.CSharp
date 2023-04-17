@@ -5,9 +5,9 @@ namespace DevJunglesCompiler;
 
 public class Source
 {
-  public ICommand[] Commands { get; }
+  public ISimpleCommand[] Commands { get; }
   
-  public Source(ICommand[] commands)
+  public Source(ISimpleCommand[] commands)
   {
     Commands = commands;
   }

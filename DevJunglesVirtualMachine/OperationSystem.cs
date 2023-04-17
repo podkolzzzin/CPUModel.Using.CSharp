@@ -221,29 +221,6 @@ public struct AsmCommand
   public int RightOperand;
 }
 
-public static class CommandBuilder 
-{
-  public static AsmCommand Put(byte regNumber, int constant) => new () { Command = Commands.Put, Register1 = regNumber, LeftOperand = constant };
-  
-  public static AsmCommand Push(byte regNumber) =>new () { Command = Commands.Push, Register1 = regNumber };
-  public static AsmCommand Pop(int count) =>new () { Command = Commands.Pop, LeftOperand = count };
-  
-  public static AsmCommand Print() =>new () { Command = Commands.Print };
-  public static AsmCommand Add(byte regNumber) => new () { Command = Commands.Add, Register1 = regNumber };
-  public static AsmCommand Sub(byte regNumber) => new () { Command = Commands.Sub, Register1 = regNumber };
-  public static AsmCommand Lt(byte regNumber) => new () { Command = Commands.Lt, Register1 = regNumber };
-  public static AsmCommand Gt(byte regNumber) => new () { Command = Commands.Gt, Register1 = regNumber };
-  
-  public static AsmCommand Jmp() => new () { Command = Commands.Jmp };
-  public static AsmCommand JmpTo(byte regNumber) => new () { Command = Commands.JmpTo, Register1 = regNumber };
-  
-  public static AsmCommand Read(byte regNumber, int stackAddress) => new () { Command = Commands.Read, Register1 = regNumber, LeftOperand = stackAddress };
-  public static AsmCommand Write(byte regNumber, int stackAddress) =>new () { Command = Commands.Write, Register1 = regNumber, LeftOperand = stackAddress };
-  
-  public static AsmCommand Bin(Commands command, byte regNumber) => new () { Command = command, Register1 = regNumber };
-}
-
-
 public class Assembly
 {
   private readonly byte[] _bytes;

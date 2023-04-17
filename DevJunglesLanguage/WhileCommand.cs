@@ -6,14 +6,14 @@ public class WhileCommand : IHighLevelCommand
 {
     private readonly IfCommand _ifCommand;
 
-    public WhileCommand(ISomeCommand[] condition, ISomeCommand[] body)
+    public WhileCommand(ICommand[] condition, ICommand[] body)
     {
-        var realBody = body.Concat(new ICommand[]
+        var realBody = body.Concat(new ISimpleCommand[]
         {
             Put(0, int.MaxValue), // Stub
             Jmp()
         }).ToArray();
-        _ifCommand = new IfCommand(condition, realBody, Array.Empty<ISomeCommand>());
+        _ifCommand = new IfCommand(condition, realBody, Array.Empty<ICommand>());
         var ifCommandsCount = _ifCommand.Size - 3;
         realBody[^2] = Put(0, -ifCommandsCount);
     }

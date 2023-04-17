@@ -4,34 +4,17 @@
     <projectFile>CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be81c20-24fc-401b-ac1b-ca042767256c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DevJunglesLanguage/Command.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DevJunglesLanguage/FunctionCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DevJunglesLanguage/LongBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="4be81c20-24fc-401b-ac1b-ca042767256c" name="Changes" comment="Added stack implementation and fibbonachi alg">
       <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/AddCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/BaseBinaryCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/DeclareCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesAssembler/ExecutionContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/GtCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/ICommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/JumpCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/LtCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/OutputCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/PutConstantToRegisterCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/ReadCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/Stack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesAssembler/Stack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/SubtractCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesAssembler/WriteCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/Compiler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/Compiler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/Source.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/Source.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesCompiler/SourceBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesCompiler/SourceBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/DevJunglesLanguage.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/DevJunglesLanguage.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/Command.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/ForCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/ForCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/FunctionCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/FunctionCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IHighLevelCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IHighLevelCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IfCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/IncrementCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/LongBuilder.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesLanguage/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesLanguage/WhileCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs" afterDir="false" />
     </list>
@@ -112,7 +95,7 @@
       <workItem from="1680971870585" duration="2900000" />
       <workItem from="1680974950774" duration="2681000" />
       <workItem from="1681195189851" duration="2786000" />
-      <workItem from="1681384997500" duration="40271000" />
+      <workItem from="1681384997500" duration="41109000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor code: introduce Process, Thread, OperationSystem, Assembly, Compiler, Source. Split into Projects">
       <created>1681198332345</created>
@@ -128,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681198373223</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added stack implementation and fibbonachi alg">
+      <created>1681733570277</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681733570277</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,20 +130,21 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Refactor code: introduce Process, Thread, OperationSystem, Assembly, Compiler, Source. Split into Projects" />
     <MESSAGE value="Add missed files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add missed files" />
+    <MESSAGE value="Added stack implementation and fibbonachi alg" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added stack implementation and fibbonachi alg" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/DevJunglesVirtualMachine/OperationSystem.cs</url>
-          <line>256</line>
+          <line>233</line>
           <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp.Rec\DevJunglesVirtualMachine\OperationSystem.cs" initialLine="256" containingFunctionPresentation="constructor 'Assembly'">
             <startOffsets>
-              <option value="8005" />
+              <option value="6474" />
             </startOffsets>
             <endOffsets>
-              <option value="8006" />
+              <option value="6475" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />

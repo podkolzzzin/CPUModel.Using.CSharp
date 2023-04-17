@@ -21,7 +21,7 @@ Source MyProgram()
     var builder = new SourceBuilder();
 
     var function = new FunctionCommand(1);
-    function.Body = new ISomeCommand[] {
+    function.Body = new ICommand[] {
         Print("Does not matter"),
         Read(0, 0),
         Put(0, 10),
@@ -30,7 +30,7 @@ Source MyProgram()
     // fib(a, b, i, j) -> a = a + b; i = i + 1; if (i < j) a = fib(b, a, i, j); else return a;
 
     var fibonachi = new FunctionCommand(4);
-    fibonachi.Body = new ISomeCommand[] {
+    fibonachi.Body = new ICommand[] {
         // a:4, b:3, i:2, j:1
         Read(0, 4),
         Read(1, 3),
@@ -40,12 +40,12 @@ Source MyProgram()
         Put(1, 1),
         Add(0),
         Write(0, 2),
-    }.Concat(new ISomeCommand[] {
-        new IfCommand(new ISomeCommand[] {
+    }.Concat(new ICommand[] {
+        new IfCommand(new ICommand[] {
                 Read(0, 2),
                 Read(1, 1),
                 Lt(0),
-            }, new ISomeCommand[] {
+            }, new ICommand[] {
                 new CallCommand(
                     new [] {
                         Read(0, 3),
@@ -55,7 +55,7 @@ Source MyProgram()
                     }, fibonachi),
                 Write(0, 4),
             },
-            Array.Empty<ISomeCommand>()),
+            Array.Empty<ICommand>()),
         Read(0, 4),
     }).ToArray();
 
