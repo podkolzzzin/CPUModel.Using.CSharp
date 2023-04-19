@@ -47,6 +47,8 @@ public class Thread
 
     while (ctx.CurrentCommandIndex < _commands.Length)
     {
+      if (ctx.CurrentCommandIndex == -1)
+        break;
       Console.Write($"[{ctx.CurrentCommandIndex.ToString().PadLeft(3, '0')}]");
       var currentCommand = _commands[ctx.CurrentCommandIndex];
       currentCommand.Dump();

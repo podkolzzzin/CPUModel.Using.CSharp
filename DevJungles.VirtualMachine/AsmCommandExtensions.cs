@@ -21,10 +21,12 @@ public static class AsmCommandExtensions // using static Commands;
       Gt => $"gt r0 r1 r{command.Register1}",
 
       Jmp => $"jmp r0",
+      JmpTo => $"jmpt r{command.Register1}",
 
       Push => $"push",
       Read => $"read r{command.Register1} {command.LeftOperand}",
       Write => $"write r{command.Register1} {command.LeftOperand}",
+      Pop => $"pop {command.LeftOperand}",
       Put => $"put r{command.Register1} {command.LeftOperand}",
       Print => "print",
       _ => throw new NotImplementedException(),
@@ -53,6 +55,9 @@ public static class AsmCommandExtensions // using static Commands;
       case Push:
         context.Stack.Push(0);
         break;
+      case Pop:
+        context.Stack.Pop(cmd.LeftOperand);
+        break;
       case Write:
         context.Stack.Set(cmd.LeftOperand, context.Registers[cmd.Register1]);
         break;
@@ -66,9 +71,12 @@ public static class AsmCommandExtensions // using static Commands;
       case Jmp:
         context.CurrentCommandIndex += context.Registers[0];
         break;
+      case JmpTo:
+        context.CurrentCommandIndex = context.Registers[cmd.Register1];
+        break;
       default:
         throw new InvalidOperationException();
     }
-    if (cmd.Command is not Jmp) context.CurrentCommandIndex++;
+    if (cmd.Command is not Jmp and not JmpTo) context.CurrentCommandIndex++;
   }
 }
