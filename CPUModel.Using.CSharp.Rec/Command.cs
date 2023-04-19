@@ -6,10 +6,7 @@ public class Command : ICommand
     _cmd = cmd;
   }
 
-  public void Execute(int[] registers, ref int currentCommandIndex) => _cmd.Execute(registers, ref currentCommandIndex);
-  public void Dump() => _cmd.Dump();
-    
-  public AsmCommand AsBytes() => _cmd;
+  public AsmCommand ToAsmCommand() => _cmd;
 
   public static ICommand Put(byte regNumber, int constant) => new Command(new () { Command = Commands.Put, Register1 = regNumber, LeftOperand = constant });
 

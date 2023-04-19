@@ -1,4 +1,12 @@
+using CPUModel.Using.CSharp.Rec;
 using static Commands;
+
+public ref struct ExecutionContext
+{
+  public int[] Registers;
+  public Stack Stack;
+  public int CurrentCommandIndex;
+}
 
 public static class AsmCommandExtensions // using static Commands;
 {
@@ -21,14 +29,14 @@ public static class AsmCommandExtensions // using static Commands;
     Console.Write(dump);
   }
     
-  public static void Execute(this AsmCommand cmd, int[] registers, ref int commandIndex)
+  public static void Execute(this AsmCommand cmd, ref ExecutionContext context)
   {
     switch (cmd.Command)
     {
       case Add or Sub or Lt or Gt:
-        var left = registers[0];
-        var right = registers[1];
-        registers[cmd.Register1] = cmd.Command switch {
+        var left = context.Registers[0];
+        var right = context.Registers[1];
+        context.Registers[cmd.Register1] = cmd.Command switch {
           Add => left + right,
           Sub => left - right,
           Gt => left > right ? 1 : 0,
@@ -37,24 +45,24 @@ public static class AsmCommandExtensions // using static Commands;
         };
         break;
       case Put:
-        registers[cmd.Register1] = cmd.LeftOperand;
+        context.Registers[cmd.Register1] = cmd.LeftOperand;
         break;
       case Write:
-        Memory.Write(cmd.Variable, registers[cmd.Register1]);
+        Memory.Write(cmd.Variable, context.Registers[cmd.Register1]);
         break;
       case Read:
-        registers[cmd.Register1] = Memory.Read(cmd.Variable);
+        context.Registers[cmd.Register1] = Memory.Read(cmd.Variable);
         break;
       case Print:
         Console.Write("PRINT");
         break;
       //throw new NotImplementedException(); // TODO: Implement
       case Jmp:
-        commandIndex += registers[0];
+        context.CurrentCommandIndex += context.Registers[0];
         break;
       default:
         throw new InvalidOperationException();
     }
-    if (cmd.Command is not Jmp) commandIndex++;
+    if (cmd.Command is not Jmp) context.CurrentCommandIndex++;
   }
 }

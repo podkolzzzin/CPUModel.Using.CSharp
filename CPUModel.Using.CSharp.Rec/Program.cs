@@ -1,4 +1,5 @@
-﻿using static Command;
+﻿using CPUModel.Using.CSharp.Rec;
+using static Command;
 
 var registers = new int[2];
 
@@ -28,14 +29,22 @@ var body = new []
 var increment = new IncrementCommand("i").Compile().ToArray();
 
 var commands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
+var asmCommands = commands.Select(x => x.ToAsmCommand()).ToArray();
 
-for (int i = 0; i < commands.Length;)
+var ctx = new ExecutionContext() 
 {
-    Console.Write($"[{i.ToString().PadLeft(3, '0')}]");
-    var currentCommand = commands[i];
+    Registers = new int[2], 
+    Stack = new Stack(), 
+    CurrentCommandIndex = 0
+};
+
+while (ctx.CurrentCommandIndex < asmCommands.Length)
+{
+    Console.Write($"[{ctx.CurrentCommandIndex.ToString().PadLeft(3, '0')}]");
+    var currentCommand = asmCommands[ctx.CurrentCommandIndex];
     currentCommand.Dump();
     Console.CursorLeft = 60;
-    currentCommand.Execute(registers, ref i);
+    currentCommand.Execute(ref ctx);
     Console.CursorLeft = 20;
     registers.Dump();
     Console.CursorLeft = 30;

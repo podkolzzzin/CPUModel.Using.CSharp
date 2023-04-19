@@ -4,21 +4,12 @@
     <projectFile>CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5be9cfe4-3e3c-49f8-a009-bff132b21f95" name="Changes" comment="Introduce struct, split behaviour and data">
+    <list default="true" id="5be9cfe4-3e3c-49f8-a009-bff132b21f95" name="Changes" comment="Remove atomic commands, replace by methods">
+      <change afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Stack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/WhileCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/AddCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/GtCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IncrementCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/LtCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/SubtractCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/AsmCommandExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/AsmCommandExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Command.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +26,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/974fa14c57bab8fe29f1bddd39b1a6548b9cc8cf9e0ef5e670c2407a56d9/String.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/andriipodkolzin/source/repos/CPUModel.Using.CSharp/CPUModel.Using.CSharp.Rec/AsmCommandExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/andriipodkolzin/source/repos/CPUModel.Using.CSharp/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/andriipodkolzin/source/repos/CPUModel.Using.CSharp/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/andriipodkolzin/source/repos/CPUModel.Using.CSharp/CPUModel.Using.CSharp.Rec/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -72,13 +66,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681885117009</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Remove atomic commands, replace by methods">
+      <created>1681885820256</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681885820256</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Introduce struct, split behaviour and data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduce struct, split behaviour and data" />
+    <MESSAGE value="Remove atomic commands, replace by methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove atomic commands, replace by methods" />
   </component>
 </project>
