@@ -1,6 +1,7 @@
 ﻿using DevJungles.Language;
+using DevJungles.Language.Commands;
 using DevJungles.VirtualMachine;
-using static DevJungles.Language.Command;
+using static DevJungles.Language.Commands.Command;
 using ExecutionContext = DevJungles.VirtualMachine.ExecutionContext;
 
 // for (var i = 0; i < 3; i++) 
@@ -8,7 +9,7 @@ using ExecutionContext = DevJungles.VirtualMachine.ExecutionContext;
 //     Console.WriteLine("#StopRussianAggression");
 // }
 
-var declarations = new ICommand[]
+var declarations = new ISimpleCommand[]
 {
     Push(),
     Put(0, 0),
@@ -29,8 +30,7 @@ var body = new []
 
 var increment = new IncrementCommand(0).Compile().ToArray();
 
-var commands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
-var asmCommands = commands.Select(x => x.ToAsmCommand()).ToArray();
+var asmCommands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
 var compiler = new Compiler();
 var asm = compiler.Compile(new Source(asmCommands));
 

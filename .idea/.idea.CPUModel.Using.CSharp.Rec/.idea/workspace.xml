@@ -4,22 +4,18 @@
     <projectFile>CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5be9cfe4-3e3c-49f8-a009-bff132b21f95" name="Changes" comment="Minimal usage of characters">
+    <list default="true" id="5be9cfe4-3e3c-49f8-a009-bff132b21f95" name="Changes" comment="Split into assemblies">
+      <change afterPath="$PROJECT_DIR$/DevJungles.Language/Compiler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DevJungles.Language/Source.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/AsmCommandExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/AsmCommandExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Command.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/ForCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/ForCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/IfCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/IncrementCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/WhileCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/RegistersExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/RegistersExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Stack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/Stack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJungles.VirtualMachine/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/OperationSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevJungles.VirtualMachine/DevJungles.VirtualMachine.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/DevJungles.VirtualMachine.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.Language/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/Commands/Command.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.Language/DevJungles.Language.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/DevJungles.Language.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.Language/ForCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/Commands/ForCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.Language/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/Commands/IfCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.Language/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/Commands/IncrementCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.Language/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/Commands/WhileCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.VirtualMachine/OperationSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/OperationSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +115,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681888270446</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Split into assemblies">
+      <created>1681889667853</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681889667853</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Split into assemblies">
+      <created>1681889677968</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681889677968</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -131,7 +141,8 @@
     <MESSAGE value="Introduce Stack, use it for read/write commands, remove Memory class" />
     <MESSAGE value="Add OS/MM/Process/Thread/Compiler/Assembler" />
     <MESSAGE value="Minimal usage of characters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minimal usage of characters" />
+    <MESSAGE value="Split into assemblies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Split into assemblies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

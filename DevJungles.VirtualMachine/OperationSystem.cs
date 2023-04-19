@@ -61,14 +61,6 @@ public class Thread
   }
 }
 
-public class Compiler
-{
-  public Assembly Compile(Source source)
-  {
-    return new Assembly(source.Commands);
-  }
-}
-
 public class Assembly
 {
   public AsmCommand[] Commands { get; }
@@ -78,13 +70,3 @@ public class Assembly
     Commands = commands;
   }
 }
-
-public class Source
-{
-  public AsmCommand[] Commands { get; }
-  public Source(AsmCommand[] commands)
-  {
-    Commands = commands;
-  }
-}
-

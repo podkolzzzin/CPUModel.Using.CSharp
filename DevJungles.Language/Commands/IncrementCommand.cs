@@ -1,5 +1,6 @@
-﻿using DevJungles.Language;
-using static DevJungles.Language.Command;
+﻿using static DevJungles.Language.Commands.Command;
+
+namespace DevJungles.Language.Commands;
 
 public class IncrementCommand
 {
@@ -10,7 +11,7 @@ public class IncrementCommand
         _address = address;
     }
 
-    public IEnumerable<ICommand> Compile()
+    public IEnumerable<ISimpleCommand> Compile()
     {
         yield return Read(0, _address);
         yield return Put(1, 1);

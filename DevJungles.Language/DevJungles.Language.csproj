@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DevJungles.Assembler\DevJungles.Assembler.csproj" />
+      <ProjectReference Include="..\DevJungles.VirtualMachine\DevJungles.VirtualMachine.csproj" />
     </ItemGroup>
 
 </Project>
