@@ -4,10 +4,21 @@
     <projectFile>CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5be9cfe4-3e3c-49f8-a009-bff132b21f95" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/AsmCommandExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Command.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" afterDir="false" />
+    <list default="true" id="5be9cfe4-3e3c-49f8-a009-bff132b21f95" name="Changes" comment="Introduce struct, split behaviour and data">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/WhileCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/AddCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/BaseBinaryCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/GtCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IncrementCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/JumpCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/LtCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/OutputCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/PutConstantToRegisterCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ReadCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/SubtractCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/WriteCommand.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,9 +26,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="95a0b47b35a35a886c2f3a605545a0997064cc06" />
+      </map>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/974fa14c57bab8fe29f1bddd39b1a6548b9cc8cf9e0ef5e670c2407a56d9/String.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/andriipodkolzin/source/repos/CPUModel.Using.CSharp/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="RunManager">
     <configuration name="CPUModel.Using.CSharp.Rec" type="DotNetProject" factoryName=".NET Project" temporary="true">
@@ -45,7 +65,20 @@
     </recent_temporary>
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Introduce struct, split behaviour and data">
+      <created>1681885117009</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681885117009</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Introduce struct, split behaviour and data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce struct, split behaviour and data" />
+  </component>
 </project>

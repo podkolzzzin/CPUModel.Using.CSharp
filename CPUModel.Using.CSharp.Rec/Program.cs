@@ -10,7 +10,7 @@ var registers = new int[2];
 var declarations = new ICommand[]
 {
     Put(0, 0),
-    new WriteCommand("i", 0),
+    Write(0, "i"),
 };
 
 var condition = new []
