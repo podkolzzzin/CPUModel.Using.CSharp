@@ -4,17 +4,43 @@ namespace DevJungles.Language.Commands;
 
 public interface ICommand
 {
-  
+  int Size { get; }
 }
 
 public interface ISimpleCommand : ICommand
 {
+  int ICommand.Size => 1;
   AsmCommand ToAsmCommand();
 }
 
 public interface IHighLevelCommand : ICommand
 {
-  IEnumerable<AsmCommand> Compile();
+  void Compile(Emitter emitter);
+}
+
+public class Emitter
+{
+  private readonly List<ISimpleCommand> _commands = new();
+
+  public AsmCommand[] ToArray() => _commands.Select(x => x.ToAsmCommand()).ToArray();
+
+  public void Emit(ICommand[] commands)
+  {
+    foreach (var cmd in commands)
+    {
+      Emit(cmd);
+    }
+  }
+  
+  public void Emit(ICommand command)
+  {
+    if (command is ISimpleCommand sc)
+      _commands.Add(sc);
+    else if (command is IHighLevelCommand highLevelCommand)
+    {
+      highLevelCommand.Compile(this);
+    }
+  }
 }
 
 

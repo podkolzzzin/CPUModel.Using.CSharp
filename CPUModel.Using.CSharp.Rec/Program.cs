@@ -9,7 +9,7 @@ using ExecutionContext = DevJungles.VirtualMachine.ExecutionContext;
 //     Console.WriteLine("#StopRussianAggression");
 // }
 
-var declarations = new ISimpleCommand[]
+var declarations = new ICommand[]
 {
     Push(),
     Put(0, 0),
@@ -30,9 +30,11 @@ var body = new []
 
 var increment = new IncrementCommand(0).Compile().ToArray();
 
-var asmCommands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
+var builder = new SourceBuilder();
+builder.Add(new ForCommand(declarations, condition, increment, body));
+
 var compiler = new Compiler();
-var asm = compiler.Compile(new Source(asmCommands));
+var asm = compiler.Compile(builder.Build());
 
 
 var vm = new OperationSystem();

@@ -3,28 +3,26 @@ using static DevJungles.Language.Commands.Command;
 
 namespace DevJungles.Language.Commands;
 
-class WhileCommand : IHighLevelCommand
+public class WhileCommand : IHighLevelCommand
 {
-    private readonly ISimpleCommand[] _condition;
-    private readonly ISimpleCommand[] _body;
+    private readonly IfCommand _ifCommand;
 
-    public WhileCommand(ISimpleCommand[] condition, ISimpleCommand[] body)
+    public WhileCommand(ICommand[] condition, ICommand[] body)
     {
-        _condition = condition;
-        _body = body;
-    }
-
-    public IEnumerable<AsmCommand> Compile()
-    {
-        var realBody = _body.Concat(new ISimpleCommand[]
+        var realBody = body.Concat(new ISimpleCommand[]
         {
             Put(0, int.MaxValue), // Stub
             Jmp()
         }).ToArray();
-        var ifCommandsCount = new IfCommand(_condition, realBody, Array.Empty<ISimpleCommand>())
-            .Compile().Count() - 3;
+        _ifCommand = new IfCommand(condition, realBody, Array.Empty<ICommand>());
+        var ifCommandsCount = _ifCommand.Size - 3;
         realBody[^2] = Put(0, -ifCommandsCount);
-
-        return new IfCommand(_condition, realBody, Array.Empty<ISimpleCommand>()).Compile();
     }
+
+    public void Compile(Emitter emitter)
+    {
+        _ifCommand.Compile(emitter);
+    }
+    
+    public int Size => _ifCommand.Size;
 }

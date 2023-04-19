@@ -12,8 +12,19 @@ public class Source
   }
 }
 
+
+
 public class SourceBuilder
 {
-  public void Add(ISimpleCommand command) {}
-  public void Add(IHighLevelCommand command) {}
+  private readonly Emitter _emitter = new();
+  public void Add(ISimpleCommand command)
+  {
+    _emitter.Emit(command);
+  }
+  public void Add(IHighLevelCommand command)
+  {
+    _emitter.Emit(command);
+  }
+
+  public Source Build() => new (_emitter.ToArray());
 }

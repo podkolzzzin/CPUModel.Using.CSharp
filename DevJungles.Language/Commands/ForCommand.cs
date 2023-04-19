@@ -4,26 +4,20 @@ namespace DevJungles.Language.Commands;
 
 public class ForCommand : IHighLevelCommand
 {
-    private readonly ISimpleCommand[] _declarations;
-    private readonly ISimpleCommand[] _condition;
-    private readonly ISimpleCommand[] _increment;
-    private readonly ISimpleCommand[] _body;
+    private readonly ICommand[] _declarations;
+    private readonly WhileCommand _loop;
 
-    public ForCommand(ISimpleCommand[] declarations, ISimpleCommand[] condition, ISimpleCommand[] increment, ISimpleCommand[] body)
+    public ForCommand(ICommand[] declarations, ISimpleCommand[] condition, ISimpleCommand[] increment, ISimpleCommand[] body)
     {
         _declarations = declarations;
-        _condition = condition;
-        _increment = increment;
-        _body = body;
+        _loop = new WhileCommand(condition, body.Concat(increment).ToArray());
     }
 
-    public IEnumerable<AsmCommand> Compile()
-    {
-        var body = _body.Concat(_increment).ToArray();
+    public int Size => _loop.Size + _declarations.Sum(x => x.Size);
 
-        var loop = new WhileCommand(_condition, body).Compile();
-        
-        return _declarations.Select(x => x.ToAsmCommand())
-            .Concat(loop.Select(x => x));
+    public void Compile(Emitter emitter)
+    {
+        emitter.Emit(_declarations);
+        emitter.Emit(_loop);
     }
 }
