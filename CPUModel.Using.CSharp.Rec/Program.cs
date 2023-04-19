@@ -1,5 +1,7 @@
-﻿using CPUModel.Using.CSharp.Rec;
-using static Command;
+﻿using DevJungles.Language;
+using DevJungles.VirtualMachine;
+using static DevJungles.Language.Command;
+using ExecutionContext = DevJungles.VirtualMachine.ExecutionContext;
 
 // for (var i = 0; i < 3; i++) 
 // {
@@ -29,53 +31,13 @@ var increment = new IncrementCommand(0).Compile().ToArray();
 
 var commands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
 var asmCommands = commands.Select(x => x.ToAsmCommand()).ToArray();
+var compiler = new Compiler();
+var asm = compiler.Compile(new Source(asmCommands));
 
-var ctx = new ExecutionContext() 
-{
-    Registers = new int[2], 
-    Stack = new Stack(), 
-    CurrentCommandIndex = 0
-};
 
-while (ctx.CurrentCommandIndex < asmCommands.Length)
-{
-    Console.Write($"[{ctx.CurrentCommandIndex.ToString().PadLeft(3, '0')}]");
-    var currentCommand = asmCommands[ctx.CurrentCommandIndex];
-    currentCommand.Dump();
-    Console.CursorLeft = 60;
-    currentCommand.Execute(ref ctx);
-    Console.CursorLeft = 20;
-    ctx.Registers.Dump();
-    Console.CursorLeft = 30;
-    ctx.Stack.Dump();
-    Console.WriteLine();
-}
+var vm = new OperationSystem();
+var process = vm.CreateProcess(asm);
+process.Start();
 
 Console.ReadLine();
 
-public enum Commands : byte
-{
-    Add,
-    Sub,
-    Lt,
-    Gt,
-    Jmp,
-    Push,
-    Read, 
-    Write,
-    Put,
-    Print,
-}
-
-public struct AsmCommand // 12 bytes like Arm x32
-{
-    public Commands Command;
-    public byte Register1;
-    public byte Register2;
-    public byte Register3;
-
-    public int LeftOperand;
-    public int RightOperand;
-
-    public string Variable; // TEMP SOLUTION. Will be removed
-}

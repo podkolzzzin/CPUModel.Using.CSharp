@@ -1,4 +1,4 @@
-namespace CPUModel.Using.CSharp.Rec;
+namespace DevJungles.VirtualMachine;
 
 public class Stack
 {

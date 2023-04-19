@@ -1,6 +1,7 @@
-﻿using static Command;
+﻿using DevJungles.Language;
+using static DevJungles.Language.Command;
 
-class IncrementCommand
+public class IncrementCommand
 {
     private readonly int _address;
 

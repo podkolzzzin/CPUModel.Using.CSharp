@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DevJungles.Assembler\DevJungles.Assembler.csproj" />
+    </ItemGroup>
+
 </Project>

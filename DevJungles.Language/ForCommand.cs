@@ -1,4 +1,8 @@
-﻿internal class ForCommand
+﻿using DevJungles.Language;
+
+namespace DevJungles.Language;
+
+public class ForCommand
 {
     private readonly ICommand[] _declarations;
     private readonly ICommand[] _condition;

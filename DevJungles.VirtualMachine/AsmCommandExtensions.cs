@@ -1,5 +1,7 @@
-using CPUModel.Using.CSharp.Rec;
-using static Commands;
+using DevJungles.Assembler;
+using static DevJungles.Assembler.Commands;
+
+namespace DevJungles.VirtualMachine;
 
 public ref struct ExecutionContext
 {

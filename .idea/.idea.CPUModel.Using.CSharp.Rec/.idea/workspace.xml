@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="5be9cfe4-3e3c-49f8-a009-bff132b21f95" name="Changes" comment="Minimal usage of characters">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CPUModel.Using.CSharp.Rec/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/AsmCommandExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/AsmCommandExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/CPUModel.Using.CSharp.Rec.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Command.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/ForCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/ForCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IfCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/IfCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/IncrementCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/IncrementCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/HighLevelCommand/WhileCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.Language/WhileCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/LowLevelCommands/ICommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/RegistersExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/RegistersExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Stack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/Stack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.VirtualMachine/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/OperationSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevJungles.VirtualMachine/DevJungles.VirtualMachine.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DevJungles.VirtualMachine/DevJungles.VirtualMachine.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681887947729</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Minimal usage of characters">
+      <created>1681888270446</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681888270446</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -116,7 +137,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Stack.cs</url>
+          <url>file://$PROJECT_DIR$/DevJungles.VirtualMachine/Stack.cs</url>
           <line>27</line>
           <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp\CPUModel.Using.CSharp.Rec\Stack.cs" initialLine="27" containingFunctionPresentation="method 'Dump'">
             <startOffsets>
@@ -129,7 +150,7 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CPUModel.Using.CSharp.Rec/Stack.cs</url>
+          <url>file://$PROJECT_DIR$/DevJungles.VirtualMachine/Stack.cs</url>
           <line>14</line>
           <properties documentPath="C:\Users\andriipodkolzin\source\repos\CPUModel.Using.CSharp\CPUModel.Using.CSharp.Rec\Stack.cs" initialLine="14" containingFunctionPresentation="method 'Push'">
             <startOffsets>

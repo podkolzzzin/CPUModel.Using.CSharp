@@ -1,4 +1,5 @@
-﻿using static Command;
+﻿using DevJungles.Language;
+using static DevJungles.Language.Command;
 
 class IfCommand
 {
