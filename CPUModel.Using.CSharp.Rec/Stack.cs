@@ -23,7 +23,7 @@ public class Stack
 
   public void Dump()
   {
-    for (int i = 0; i < _top; i++)
+    for (int i = 0; i <= _top; i++)
     {
       Console.Write(Get(i).ToString().PadLeft(2));
       Console.Write(" ");

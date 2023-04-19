@@ -1,8 +1,6 @@
 ﻿using CPUModel.Using.CSharp.Rec;
 using static Command;
 
-var registers = new int[2];
-
 // for (var i = 0; i < 3; i++) 
 // {
 //     Console.WriteLine("#StopRussianAggression");
@@ -10,14 +8,15 @@ var registers = new int[2];
 
 var declarations = new ICommand[]
 {
+    Push(),
     Put(0, 0),
-    Write(0, "i"),
+    Write(0, 0),
 };
 
 var condition = new []
 {
     Put(1, 3),
-    Read(0, "i"),
+    Read(0, 0),
     Lt(0)
 };
 
@@ -26,7 +25,7 @@ var body = new []
     Print("#StopRussianAggression")
 }.ToArray();
 
-var increment = new IncrementCommand("i").Compile().ToArray();
+var increment = new IncrementCommand(0).Compile().ToArray();
 
 var commands = new ForCommand(declarations, condition, increment, body).Compile().ToArray();
 var asmCommands = commands.Select(x => x.ToAsmCommand()).ToArray();
@@ -46,9 +45,9 @@ while (ctx.CurrentCommandIndex < asmCommands.Length)
     Console.CursorLeft = 60;
     currentCommand.Execute(ref ctx);
     Console.CursorLeft = 20;
-    registers.Dump();
+    ctx.Registers.Dump();
     Console.CursorLeft = 30;
-    Memory.Dump();
+    ctx.Stack.Dump();
     Console.WriteLine();
 }
 
@@ -61,6 +60,7 @@ public enum Commands : byte
     Lt,
     Gt,
     Jmp,
+    Push,
     Read, 
     Write,
     Put,

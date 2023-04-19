@@ -2,9 +2,9 @@
 
 class IncrementCommand
 {
-    private readonly string _address;
+    private readonly int _address;
 
-    public IncrementCommand(string address)
+    public IncrementCommand(int address)
     {
         _address = address;
     }

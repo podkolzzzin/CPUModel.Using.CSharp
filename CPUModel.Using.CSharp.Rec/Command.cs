@@ -8,6 +8,8 @@ public class Command : ICommand
 
   public AsmCommand ToAsmCommand() => _cmd;
 
+  public static ICommand Push() => new Command(new() { Command = Commands.Push});
+
   public static ICommand Put(byte regNumber, int constant) => new Command(new () { Command = Commands.Put, Register1 = regNumber, LeftOperand = constant });
 
   public static ICommand Print(string text) => new Command(new () { Command = Commands.Print });
@@ -18,6 +20,6 @@ public class Command : ICommand
   
   public static ICommand Jmp() => new Command(new () { Command = Commands.Jmp });
     
-  public static ICommand Read(byte regNumber, string variable) => new Command(new () { Command = Commands.Read, Register1 = regNumber, Variable = variable });
-  public static ICommand Write(byte regNumber, string variable) => new Command(new () { Command = Commands.Write, Register1 = regNumber, Variable = variable });
+  public static ICommand Read(byte regNumber, int stackAddress) => new Command(new () { Command = Commands.Read, Register1 = regNumber, LeftOperand = stackAddress });
+  public static ICommand Write(byte regNumber, int stackAddress) => new Command(new () { Command = Commands.Write, Register1 = regNumber, LeftOperand = stackAddress });
 }

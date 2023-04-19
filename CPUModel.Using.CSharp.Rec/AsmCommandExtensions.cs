@@ -20,6 +20,7 @@ public static class AsmCommandExtensions // using static Commands;
 
       Jmp => $"jmp r0",
 
+      Push => $"push",
       Read => $"read r{command.Register1} {command.LeftOperand}",
       Write => $"write r{command.Register1} {command.LeftOperand}",
       Put => $"put r{command.Register1} {command.LeftOperand}",
@@ -47,11 +48,14 @@ public static class AsmCommandExtensions // using static Commands;
       case Put:
         context.Registers[cmd.Register1] = cmd.LeftOperand;
         break;
+      case Push:
+        context.Stack.Push(0);
+        break;
       case Write:
-        Memory.Write(cmd.Variable, context.Registers[cmd.Register1]);
+        context.Stack.Set(cmd.LeftOperand, context.Registers[cmd.Register1]);
         break;
       case Read:
-        context.Registers[cmd.Register1] = Memory.Read(cmd.Variable);
+        context.Registers[cmd.Register1] = context.Stack.Get(cmd.LeftOperand);
         break;
       case Print:
         Console.Write("PRINT");
