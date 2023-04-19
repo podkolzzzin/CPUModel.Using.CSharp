@@ -1,4 +1,6 @@
-﻿var registers = new int[2];
+﻿using static Command;
+
+var registers = new int[2];
 
 // for (var i = 0; i < 3; i++) 
 // {
@@ -7,20 +9,20 @@
 
 var declarations = new ICommand[]
 {
-    new PutConstantToRegisterCommand(0, 0),
+    Put(0, 0),
     new WriteCommand("i", 0),
 };
 
-var condition = new ICommand[]
+var condition = new []
 {
-    new PutConstantToRegisterCommand(1, 3),
-    new ReadCommand("i", 0),
-    new LtCommand(0)
+    Put(1, 3),
+    Read(0, "i"),
+    Lt(0)
 };
 
-var body = new ICommand[]
+var body = new []
 {
-    new OutputCommand("#StopRussianAggression")
+    Print("#StopRussianAggression")
 }.ToArray();
 
 var increment = new IncrementCommand("i").Compile().ToArray();
@@ -42,3 +44,29 @@ for (int i = 0; i < commands.Length;)
 }
 
 Console.ReadLine();
+
+public enum Commands : byte
+{
+    Add,
+    Sub,
+    Lt,
+    Gt,
+    Jmp,
+    Read, 
+    Write,
+    Put,
+    Print,
+}
+
+public struct AsmCommand // 12 bytes like Arm x32
+{
+    public Commands Command;
+    public byte Register1;
+    public byte Register2;
+    public byte Register3;
+
+    public int LeftOperand;
+    public int RightOperand;
+
+    public string Variable; // TEMP SOLUTION. Will be removed
+}
